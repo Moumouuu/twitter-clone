@@ -6,7 +6,7 @@ import {useSession, signIn, signOut} from "next-auth/react";
 const Profil = () => {
     const {data: session} = useSession();
     const [showInfo, setShowInfo] = useState(false);
-    if(session) {
+    if (session) {
         return (
             <div onClick={() => setShowInfo(!showInfo)}
                  className={"cursor-pointer flex flex-row justify-between items-center bg-black hover:bg-gray-900 rounded-full py-1 px-3 mr-4 relative"}>
@@ -32,8 +32,7 @@ const Profil = () => {
                 </div>
             </div>
         );
-    }
-    else{
+    } else {
         return (
             <div onClick={() => setShowInfo(!showInfo)}
                  className={"cursor-pointer flex flex-row justify-between items-center bg-black hover:bg-gray-900 rounded-full py-1 px-3 mr-4 relative"}>
@@ -42,7 +41,7 @@ const Profil = () => {
                          className={"absolute bottom-14 w-full h-auto bg-black border-2 border-white shadow rounded-lg"}>
                         <p className={"font-semibold bg-black hover:bg-gray-800 p-3 rounded-lg duration-300"}>
                             Connexion
-                            </p>
+                        </p>
                     </div>}
                 <div className="flex">
                     <Image
