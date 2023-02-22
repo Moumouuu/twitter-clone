@@ -1,7 +1,6 @@
 export default function Home() {
   return (
-    <>
-      <h1>Hello world !</h1>
-    </>
+    <div className={"text-[#E6E9EA]"}>
+    </div>
   )
 }
