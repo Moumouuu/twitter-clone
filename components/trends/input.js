@@ -8,7 +8,7 @@ const Input = () => {
                     <HiOutlineMagnifyingGlass/>
                 </div>
                 <input type="text"
-                       className={"pl-10 w-full rounded-full bg-gray-800 px-3 py-2 outline-none bg-transparent text-white focus:outline-[#1DA1F2]"}
+                       className={"pl-10 w-full rounded-full bg-[#202327] px-4 py-2 outline-none bg-transparent text-white focus:outline-[#1DA1F2]"}
                        placeholder={"Recherche Twitter "}/>
             </div>
         </div>

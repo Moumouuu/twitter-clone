@@ -36,10 +36,10 @@ const InputMessage = () => {
 
     return (
         <div className={"flex border-y-2 border-gray-800 "}>
-            <div className={"mx-4 my-auto w-15"}>
+            <div className={"mx-4 pt-2 w-15"}>
                 <Image
                     src={session ? session?.user.image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png'}
-                    alt={"user picture"} height={60} width={60}
+                    alt={"user picture"} height={100} width={100}
                     className={"rounded-full hidden md:block"}></Image>
             </div>
             <div className={"flex flex-col w-full p-3"}>
@@ -48,17 +48,17 @@ const InputMessage = () => {
                        placeholder={"Quoi de neuf ?"}/>
                 <div className={"flex items-center w-full justify-between"}>
                     <div className="flex">
-                        <div className={"text-[#1DA1F2] text-xl cursor-pointer mx-1 p-1"}>
+                        <div className={"text-[#1DA1F2] text-xl cursor-pointer mr-4"}>
                             <AiOutlinePicture/>
                         </div>
-                        <div className={"text-[#1DA1F2] text-xl cursor-pointer mx-1 p-1"}>
+                        <div className={"text-[#1DA1F2] text-xl cursor-pointer mr-4 "}>
                             <AiOutlineGif/>
                         </div>
-                        <div className={"text-[#1DA1F2] text-xl cursor-pointer mx-1 p-1"}>
+                        <div className={"text-[#1DA1F2] text-xl cursor-pointer mr-4 "}>
                             <BsListUl/>
                         </div>
                         <div onClick={() => setShowEmoji(!showEmoji)}
-                             className={"relative text-[#1DA1F2] text-xl cursor-pointer mx-1 p-1"}>
+                             className={"relative text-[#1DA1F2] text-xl cursor-pointer mr-4 "}>
                             <VscSmiley/>
                             {showEmoji &&
                                 <div className={"absolute top-10"}>
@@ -66,7 +66,7 @@ const InputMessage = () => {
                                 </div>
                             }
                         </div>
-                        <div className={"text-[#1DA1F2] text-xl cursor-pointer mx-1 p-1"}>
+                        <div className={"text-[#1DA1F2] text-xl cursor-pointer mr-4"}>
                             <AiOutlineCalendar/>
                         </div>
                     </div>
