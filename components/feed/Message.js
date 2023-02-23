@@ -27,7 +27,7 @@ const Message = ({tweet, userConnectedId}) => {
     }, [session, userConnectedId]);
     const getUser = async () => {
         try {
-            const res = await fetch(`http://localhost:3000/api/getUser/${tweet.authorId}`, {
+            const res = await fetch(`/api/getUser/${tweet.authorId}`, {
                 method: 'GET', headers: {
                     'Content-Type': 'application/json'
                 },
@@ -42,7 +42,7 @@ const Message = ({tweet, userConnectedId}) => {
 
     const alreadyLiked = async () => {
         try {
-            fetch(`http://localhost:3000/api/alreadyLiked/${tweet.id}`, {
+            fetch(`/api/alreadyLiked/${tweet.id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ const Message = ({tweet, userConnectedId}) => {
 
     const getNumberOfLikes = async () => {
         try {
-            fetch(`http://localhost:3000/api/getNumberOfLikes/${tweet.id}`, {
+            fetch(`/api/getNumberOfLikes/${tweet.id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ const Message = ({tweet, userConnectedId}) => {
     //use to update the number of likes
     const updateLike = () => {
         if (!like) {
-            fetch(`http://localhost:3000/api/addLike/${tweet.id}`, {
+            fetch(`/api/addLike/${tweet.id}`, {
                 method: 'POST', headers: {
                     'Content-Type': 'application/json'
                 }, body: JSON.stringify({idPerson: userConnectedId, alreadyLiked: like})
@@ -85,7 +85,7 @@ const Message = ({tweet, userConnectedId}) => {
             setNumberOfLikes(numberOfLikes + 1);
         } else {
 
-            fetch(`http://localhost:3000/api/addLike/${tweet.id}`, {
+            fetch(`/api/addLike/${tweet.id}`, {
                 method: 'POST', headers: {
                     'Content-Type': 'application/json'
                 }, body: JSON.stringify({idPerson: userConnectedId, alreadyLiked: like})
