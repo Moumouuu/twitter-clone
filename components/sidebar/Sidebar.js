@@ -13,7 +13,7 @@ import Profil from "@/components/sidebar/Profil";
 const Sidebar = () => {
     return (
         <div
-            className={"sticky left-0 ml-5 md:ml-10 pt-4 text-[#E6E9EA] w-[200px] sm:w-[250px] md:w-[300px] border-r-2 border-gray-800 h-screen flex flex-col justify-between"}>
+            className={"sticky left-0 ml-5 md:ml-10 pr-5 pt-4 text-[#E6E9EA] w-[200px] sm:w-[250px] md:w-[300px] border-r-2 border-gray-800 h-screen flex flex-col justify-between"}>
             <div>
                 <div className={"text-4xl"}>
                     <FaTwitter/>
