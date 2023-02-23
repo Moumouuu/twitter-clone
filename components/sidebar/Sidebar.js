@@ -1,7 +1,7 @@
 import Item from "@/components/sidebar/Item";
 import {HiHome} from "react-icons/hi";
 import {FaTwitter} from "react-icons/fa";
-import {BiHash, BiEnvelope} from "react-icons/bi";
+import {BiEnvelope, BiHash} from "react-icons/bi";
 import {BsBookmark, BsPersonFill} from "react-icons/bs";
 import {CgMoreO} from "react-icons/cg";
 import {GiBirdTwitter} from "react-icons/gi";
@@ -13,7 +13,7 @@ import Profil from "@/components/sidebar/Profil";
 const Sidebar = () => {
     return (
         <div
-            className={"sticky left-0 ml-5 md:ml-10 pt-4 text-[#E6E9EA] w-[20vw] border-r-2 border-gray-800 overflow-hidden h-screen flex flex-col justify-between"}>
+            className={"sticky left-0 ml-5 md:ml-10 pt-4 text-[#E6E9EA] w-[200px] sm:w-[250px] md:w-[300px] border-r-2 border-gray-800 h-screen flex flex-col justify-between"}>
             <div>
                 <div className={"text-4xl"}>
                     <FaTwitter/>
@@ -31,7 +31,7 @@ const Sidebar = () => {
                 <div>
                     <Link href={""}>
                         <button
-                            className={"bg-[#1DA1F2] hover:bg-sky-600 duration-300 text-white text-1xl font-bold rounded-full w-2/3 py-3 "}>
+                            className={"bg-[#1DA1F2] hover:bg-sky-600 duration-300 text-white text-1xl font-bold rounded-full py-3 px-2 hidden sm-block"}>
                             Tweeter
                         </button>
                     </Link>

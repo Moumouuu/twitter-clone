@@ -36,11 +36,11 @@ const InputMessage = () => {
 
     return (
         <div className={"flex border-y-2 border-gray-800 "}>
-            <div className={"mx-4 my-auto"}>
+            <div className={"mx-4 my-auto w-15"}>
                 <Image
                     src={session ? session?.user.image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png'}
                     alt={"user picture"} height={60} width={60}
-                    className={"rounded-full"}></Image>
+                    className={"rounded-full hidden md:block"}></Image>
             </div>
             <div className={"flex flex-col w-full p-3"}>
                 <input value={message} onChange={(e) => setMessage(e.target.value)}

@@ -11,7 +11,7 @@ export default async function handler(req, res) {
             }
         })
     }
-    //if user is not found, create new user
+    //if user is not found, create new user with session data
     if (user === null) {
         try {
             user = await prisma.user.create({

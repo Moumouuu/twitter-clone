@@ -33,7 +33,7 @@ export default function Home({tweets}) {
     }
 
     return (
-        <div className={"text-[#E6E9EA]"}>
+        <div className={"text-[#E6E9EA] w-[100vw]"}>
             <Feed tweets={tweets} userConnectedId={userConnectedId}/>
         </div>
     )

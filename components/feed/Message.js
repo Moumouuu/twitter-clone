@@ -19,8 +19,8 @@ const Message = ({tweet, userConnectedId}) => {
     useEffect(() => {
         if (session && userConnectedId !== 0) {
             alreadyLiked();
-        } else {
             getUser();
+        } else {
             getNumberOfLikes();
         }
 
@@ -117,7 +117,7 @@ const Message = ({tweet, userConnectedId}) => {
         <div className={"flex border-b-2 border-gray-700 p-3"}>
             <div className={"mx-3"}>
                 <Image src={user.picture} alt={"logo profile"} height={60} width={60}
-                       className={"rounded-full"}></Image>
+                       className={"rounded-full hidden md:block"}></Image>
             </div>
             <div className={"flex flex-col"}>
                 <div className="flex">
