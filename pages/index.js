@@ -19,7 +19,7 @@ export default function Home({tweets}) {
     const getIdOfUserConnected = async () => {
         console.log(session?.user.email);
         try {
-            const res = await fetch(`http://localhost:3000/api/getIdOfUserConnected/`, {
+            const res = await fetch(`/api/getIdOfUserConnected/`, {
                 method: 'POST', headers: {
                     'Content-Type': 'application/json'
                 },
