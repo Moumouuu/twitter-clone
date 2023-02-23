@@ -1,17 +1,19 @@
 import Image from "next/image";
 import {useSession} from "next-auth/react";
-import {AiOutlinePicture, AiOutlineGif, AiOutlineCalendar} from "react-icons/ai";
+import {AiOutlineCalendar, AiOutlineGif, AiOutlinePicture} from "react-icons/ai";
 import {BsListUl} from "react-icons/bs";
 import {VscSmiley} from "react-icons/vsc";
 import {useState} from "react";
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
+import {useRouter} from "next/router";
+import refreshPage from "@/utils/refreshPage";
 
 const InputMessage = () => {
     const {data: session} = useSession();
     const [message, setMessage] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
-
+    const router = useRouter();
     const sendMessage = async () => {
         try {
             await fetch("/api/sendMessage/", {
@@ -28,14 +30,17 @@ const InputMessage = () => {
             console.log(e);
         } finally {
             setMessage("");
+            refreshPage(router);
         }
     }
 
     return (
         <div className={"flex border-y-2 border-gray-800 "}>
             <div className={"mx-4 my-auto"}>
-                <Image src={session?.user.image} alt={"user picture"} height={60} width={60}
-                       className={"rounded-full"}></Image>
+                <Image
+                    src={session ? session?.user.image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png'}
+                    alt={"user picture"} height={60} width={60}
+                    className={"rounded-full"}></Image>
             </div>
             <div className={"flex flex-col w-full p-3"}>
                 <input value={message} onChange={(e) => setMessage(e.target.value)}

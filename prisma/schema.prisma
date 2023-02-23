@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["filteredRelationCount"]
 }
 
 datasource db {
@@ -13,6 +14,7 @@ model User {
   name    String?
   picture String
   Post    Tweet[]
+  Like    Like[]
 }
 
 model Tweet {
@@ -21,4 +23,13 @@ model Tweet {
   datePublished DateTime @default(now())
   authorId      Int
   User          User     @relation(fields: [authorId], references: [id])
+  Like          Like[]
+}
+
+model Like {
+  id      Int   @id @default(autoincrement())
+  tweetId Int
+  userId  Int
+  Tweet   Tweet @relation(fields: [tweetId], references: [id])
+  User    User  @relation(fields: [userId], references: [id])
 }
