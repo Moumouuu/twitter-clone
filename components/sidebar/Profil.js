@@ -9,7 +9,7 @@ const Profil = () => {
     if (session) {
         return (
             <div onClick={() => setShowInfo(!showInfo)}
-                 className={"cursor-pointer flex flex-row justify-between items-center bg-black hover:bg-gray-900 rounded-full py-1 px-3 mr-4 relative"}>
+                 className={"cursor-pointer flex flex-row justify-between items-center bg-black hover:bg-gray-900 rounded-full w-full py-1 px-3 relative"}>
                 {showInfo &&
                     <div onClick={() => signOut()}
                          className={"absolute bottom-14 w-full h-auto bg-black border-2 border-white shadow rounded-lg"}>
