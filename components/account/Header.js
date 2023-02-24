@@ -23,7 +23,7 @@ const Header = ({user}) => {
 
 
     return (
-        <div className={"flex items-center p-3"}>
+        <div className={"flex items-center p-3 bg-black"}>
             <Link href={'/'} className="p-3 cursor-pointer text-2xl">
                 <AiOutlineArrowLeft/>
             </Link>
