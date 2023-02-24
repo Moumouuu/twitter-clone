@@ -1,11 +1,12 @@
 import React from 'react';
 import Image from "next/image";
 import {FiMoreHorizontal} from "react-icons/fi";
+import Link from "next/link";
 
 const Profile = ({user}) => {
     return (
-        <div
-            className={"mb-3 cursor-pointer flex flex-row justify-between items-center duration-300 bg-[#202327] hover:border-[#1DA1F2] border-2 border-[#202327] rounded-full w-full py-1 px-3 relative"}>
+        <Link href={`/user/${user?.id}`}
+              className={"mb-3 cursor-pointer flex flex-row justify-between items-center duration-300 bg-[#202327] hover:border-[#1DA1F2] border-2 border-[#202327] rounded-full w-full py-1 px-3 relative"}>
             <div className="flex">
                 <div>
                     <Image
@@ -20,7 +21,7 @@ const Profile = ({user}) => {
             <div className="hidden md:block">
                 <FiMoreHorizontal/>
             </div>
-        </div>
+        </Link>
     );
 };
 

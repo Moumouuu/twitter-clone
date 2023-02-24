@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {AiOutlineArrowLeft} from "react-icons/ai";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 const Header = ({user}) => {
     const [tweets, setTweets] = useState(0);
-
+    const router = useRouter();
     useEffect(() => {
         getTweets();
-    }, [tweets]);
+    }, [tweets, router]);
 
     const getTweets = async () => {
         const res = await fetch(`/api/getTweetsOfUser/${user.id}`, {

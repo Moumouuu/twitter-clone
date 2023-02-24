@@ -31,11 +31,12 @@ const Input = () => {
                     <HiOutlineMagnifyingGlass/>
                 </div>
                 <input type="text"
+                       value={search}
                        onChange={(e) => getUsersFromSearch(e)}
                        className={"pl-10 w-full rounded-full bg-[#202327] px-4 py-2 outline-none bg-transparent text-white focus:outline-[#1DA1F2]"}
                        placeholder={"Recherche Twitter "}/>
                 {search.length > 0 && (
-                    <div className={"absolute top-12 w-full bg-[#202327] rounded-xl p-3"}>
+                    <div onClick={() => setSearch("")} className={"absolute top-12 w-full bg-[#202327] rounded-xl p-3"}>
                         {users?.map(user => (
                             <Profile key={user.email} user={user}/>
                         ))}
