@@ -2,6 +2,7 @@ import Input from "@/components/trends/input";
 import Suggestions from "@/components/trends/Suggestions";
 
 const Trends = () => {
+
     return (
         <div className={"w-1/2 hidden md:block h-screen overflow-y-scroll"}>
             <Input/>
