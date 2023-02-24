@@ -1,28 +1,11 @@
 import {HiOutlineMagnifyingGlass} from "react-icons/hi2";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Profile from "@/components/trends/Profile";
-import refreshPage from "@/utils/refreshPage";
-import {useRouter} from "next/router";
 
 const Input = () => {
     const [search, setSearch] = useState("");
     const [users, setUsers] = useState([]);
-    const router = useRouter();
 
-    useEffect(() => {
-        refreshPage(router)
-        console.log("refreshed")
-        console.log(users)
-    }, [users]);
-
-    /*useEffect(() => {
-        getUsersFromSearch().then(user => {
-            setUsers([]);
-            users.push(user)
-        }).then(() => {
-            console.log(users)
-        });
-    }, [search]);*/
 
     const getUsersFromSearch = async (e) => {
         setSearch(e.target.value);
@@ -35,9 +18,7 @@ const Input = () => {
                 body: JSON.stringify({search}),
             });
             const data = await res.json();
-            //setUsers([]);
             setUsers(data.users);
-            //console.log(data.users)
         } catch (e) {
             console.log(e);
         }

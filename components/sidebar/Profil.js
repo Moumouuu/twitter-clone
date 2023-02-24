@@ -6,6 +6,7 @@ import {signIn, signOut, useSession} from "next-auth/react";
 const Profil = () => {
     const {data: session} = useSession();
     const [showInfo, setShowInfo] = useState(false);
+
     if (session) {
         return (
             <div onClick={() => setShowInfo(!showInfo)}
