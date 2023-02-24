@@ -72,8 +72,8 @@ const InputMessage = () => {
                     </div>
                     <div>
                         <button
-                            onClick={sendMessage}
-                            className={"bg-[#1DA1F2] hover:bg-sky-600 duration-300 text-white font-bold rounded-full py-2 px-5 "}>Tweeter
+                            onClick={message.length > 0 ? sendMessage : null}
+                            className={message.length === 0 ? "bg-[#226E9D] text-white font-bold rounded-full py-2 px-5 " : "bg-[#1DA1F2] hover:bg-sky-600 duration-300 text-white font-bold rounded-full py-2 px-5 "}>Tweeter
                         </button>
                     </div>
                 </div>
