@@ -20,7 +20,6 @@ const Message = ({tweet, userConnectedId}) => {
         if (session && userConnectedId !== 0) {
             alreadyLiked();
             getUser();
-        } else {
             getNumberOfLikes();
         }
 
@@ -140,13 +139,13 @@ const Message = ({tweet, userConnectedId}) => {
                         <span className={"ml-2 text-gray-500"}>0</span>
                     </div>
                     {like ? (
-                        <div onClick={addLike} className={'text-red-800 flex items-center mx-6 cursor-pointer'}>
+                        <div onClick={addLike} className={'text-red-600 flex items-center mx-6 cursor-pointer'}>
                             <AiFillHeart/>
                             <span className={"ml-2 text-gray-500"}>{numberOfLikes}</span>
                         </div>
                     ) : (
                         <div onClick={addLike}
-                             className={like ? 'text-red-800 flex items-center mx-6 cursor-pointer' : 'text-gray-500 flex items-center mx-6 cursor-pointer'}>
+                             className={like ? 'text-red-600 flex items-center mx-6 cursor-pointer' : 'text-gray-500 flex items-center mx-6 cursor-pointer'}>
                             <AiOutlineHeart/>
                             <span className={"ml-2 text-gray-500"}>{numberOfLikes}</span>
                         </div>

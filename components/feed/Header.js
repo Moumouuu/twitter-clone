@@ -10,8 +10,8 @@ const Header = () => {
                     <div
                         className={'absolute bottom-0 left-[50%] translate-x-[-50%] bg-[#1DA1F2] h-1 w-[20%] rounded-full'}></div>
                 </Link>
-                <Link href={"/"}
-                      className={"font-semibold text-gray-600 w-1/2 px-4 py-4 bg-black hover:bg-gray-900"}>Abonnements</Link>
+                <Link href={"/follow"}
+                      className={"font-semibold text-gray-600 w-1/2 px-4 py-4 bg-black hover:bg-gray-900"}>Follow</Link>
             </div>
         </div>
     );

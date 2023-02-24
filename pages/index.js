@@ -2,6 +2,7 @@ import Feed from "@/components/feed/feed";
 import {prisma} from "@/lib/prisma";
 import {useSession} from "next-auth/react";
 import {useEffect, useState} from "react";
+import getIdOfUserConnected from "@/utils/getIdOfUserConnected";
 
 export default function Home({tweets}) {
 
@@ -10,27 +11,12 @@ export default function Home({tweets}) {
 
     useEffect(() => {
         if (session) {
-            getIdOfUserConnected();
+            getIdOfUserConnected(session, setUserConnectedId);
             console.log("id: " + userConnectedId);
         } else {
             console.log("no session");
         }
     }, [session, userConnectedId]);
-    const getIdOfUserConnected = async () => {
-        console.log(session?.user.email);
-        try {
-            const res = await fetch(`/api/getIdOfUserConnected/`, {
-                method: 'POST', headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({email: session?.user.email}),
-            });
-            const {user} = await res.json();
-            setUserConnectedId(user.id);
-        } catch (e) {
-            console.log(e);
-        }
-    }
 
     return (
         <div className={"text-[#E6E9EA] w-[100vw]"}>
