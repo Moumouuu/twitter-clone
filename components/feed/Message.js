@@ -115,8 +115,10 @@ const Message = ({tweet, userConnectedId}) => {
     return (
         <div className={"flex border-b-2 border-gray-700 p-3"}>
             <div className={"mx-3"}>
-                <Image src={user.picture} alt={"logo profile"} height={60} width={60}
-                       className={"rounded-full hidden md:block"}></Image>
+                <Image
+                    src={user ? user.picture : "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"}
+                    alt={"logo profile"} height={60} width={60}
+                    className={"rounded-full hidden md:block"}></Image>
             </div>
             <div className={"flex flex-col"}>
                 <div className="flex">
