@@ -48,7 +48,19 @@ const Banner = ({user}) => {
     }
 
     const removeFollow = async (follower) => {
-
+        if (follower !== null) {
+            try {
+                await fetch("/api/follow/removeFollow", {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({idFollower: follower.id, idFollowed: user.id}),
+                })
+            } catch (e) {
+                console.log(e);
+            }
+        }
     }
 
     const getUserId = async () => {
