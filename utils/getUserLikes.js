@@ -1,6 +1,6 @@
 import getTweetFromId from "@/utils/getTweetFromId";
 
-export default async function getUserLikes(router, tweets, userConnectedId) {
+export default async function getUserLikes(router, tweets, setTweets, userConnectedId) {
     try {
         const response = await fetch('/api/tweetsLiked/', {
             method: 'POST',
@@ -13,7 +13,7 @@ export default async function getUserLikes(router, tweets, userConnectedId) {
                 (data) => {
                     //Permet de récupérer les tweets en fonction de l'id des tweets likés
                     data.tweetsLiked.forEach((tweet) => {
-                        getTweetFromId(tweet.tweetId, router, tweets)
+                        getTweetFromId(tweet.tweetId, router, tweets, setTweets)
                     });
                 }
             ));

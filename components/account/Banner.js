@@ -41,7 +41,6 @@ const Banner = ({user}) => {
                 }
             });
             const {followings} = await res.json();
-            //console.log(followings)
             setFollowings(followings);
         } catch (e) {
             console.log(e);

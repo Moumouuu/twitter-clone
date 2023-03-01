@@ -9,14 +9,12 @@ const Likes = ({userConnectedId, setUserConnectedId}) => {
     const {data: session} = useSession();
     const router = useRouter();
     const [tweets, setTweets] = useState([]);
-    const [added, setAdded] = useState(false);
 
-    //bug page qui update les tweets sans supprimer les ancienns data donc ajoute des tweets en double
     useEffect(() => {
-        if (session && !added) {
+        setTweets([])
+        if (session) {
             getIdOfUserConnected(session, setUserConnectedId);
-            getUserLikes(router, tweets, parseInt(router.query.id[0]))
-            setAdded(true);
+            getUserLikes(router, tweets, setTweets, parseInt(router.query.id[0]))
         }
     }, [session, userConnectedId]);
 
