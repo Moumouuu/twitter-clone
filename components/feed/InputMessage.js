@@ -57,9 +57,11 @@ const InputMessage = () => {
                         <div className={"text-[#1DA1F2] text-xl cursor-pointer mr-4 "}>
                             <BsListUl/>
                         </div>
-                        <div onClick={() => setShowEmoji(!showEmoji)}
-                             className={"relative text-[#1DA1F2] text-xl cursor-pointer mr-4 "}>
-                            <VscSmiley/>
+                        <div
+                            className={"relative text-[#1DA1F2] text-xl cursor-pointer mr-4 "}>
+                            <div onClick={() => setShowEmoji(!showEmoji)}>
+                                <VscSmiley/>
+                            </div>
                             {showEmoji &&
                                 <div className={"absolute top-10"}>
                                     <Picker data={data} onEmojiSelect={(e) => setMessage(message + e.native)}/>

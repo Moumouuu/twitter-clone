@@ -9,12 +9,15 @@ datasource db {
 }
 
 model User {
-  id      Int     @id @default(autoincrement())
-  email   String  @unique
-  name    String?
-  picture String
-  Post    Tweet[]
-  Like    Like[]
+  id                  Int      @id @default(autoincrement())
+  email               String   @unique
+  name                String?
+  picture             String
+  dateCreatingAccount DateTime @default(now())
+  Tweet               Tweet[]
+  Like                Like[]
+  Follow              Follow[] @relation("follow")
+  Followers           Follow[] @relation("followed")
 }
 
 model Tweet {
@@ -32,4 +35,12 @@ model Like {
   userId  Int
   Tweet   Tweet @relation(fields: [tweetId], references: [id])
   User    User  @relation(fields: [userId], references: [id])
+}
+
+model Follow {
+  id         Int  @id @default(autoincrement())
+  followerId Int
+  followedId Int
+  follower   User @relation("follow", fields: [followerId], references: [id])
+  followed   User @relation("followed", fields: [followedId], references: [id])
 }

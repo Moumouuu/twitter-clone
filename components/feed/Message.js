@@ -8,6 +8,7 @@ import Moment from "react-moment";
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import refreshPage from "@/utils/refreshPage";
+import Link from "next/link";
 
 const Message = ({tweet, userConnectedId}) => {
     const [user, setUser] = useState("");
@@ -122,7 +123,8 @@ const Message = ({tweet, userConnectedId}) => {
             </div>
             <div className={"flex flex-col"}>
                 <div className="flex">
-                    <span className={"font-semibold mr-2"}>{user.name}</span>
+                    <Link href={`/user/${tweet.authorId}`} className={"hover:underline"}><span
+                        className={"font-semibold mr-2"}>{user.name}</span> </Link>
                     <span className={"text-gray-700"}>@{user.name}</span>
                     <span className={"text-gray-700 ml-2"}>
                         <Moment fromNow>{tweet.datePublished}</Moment>
