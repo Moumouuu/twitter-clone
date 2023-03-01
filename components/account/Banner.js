@@ -6,13 +6,47 @@ import {useSession} from "next-auth/react";
 
 const Banner = ({user}) => {
     const [follow, setFollow] = useState(false);
+    const [followers, setFollowers] = useState(0);
+    const [followings, setFollowings] = useState(0);
     const {data: session} = useSession();
 
     useEffect(() => {
         if (session) {
             alreadyFollow();
+            getFollowers();
+            getFollowings();
         }
-    }, [session])
+    }, [session, follow])
+
+
+    const getFollowers = async () => {
+        try {
+            const res = await fetch(`/api/follow/getFollowers/${user.id}`, {
+                method: 'GET', headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const {followers} = await res.json();
+            setFollowers(followers);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const getFollowings = async () => {
+        try {
+            const res = await fetch(`/api/follow/getFollowings/${user.id}`, {
+                method: 'GET', headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const {followings} = await res.json();
+            //console.log(followings)
+            setFollowings(followings);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     const alreadyFollow = async () => {
         const follower = await getUserId();
@@ -140,9 +174,9 @@ const Banner = ({user}) => {
                     <span>À rejoint TwiTwit le {user.dateCreatingAccount}</span>
                 </div>
                 <div className={"flex"}>
-                    <span className={"font-semibold mr-2"}>101</span>
+                    <span className={"font-semibold mr-2"}>{followers}</span>
                     <span className={"text-gray-600 mr-6"}>abonnements</span>
-                    <span className={"font-semibold mr-2"}>32</span>
+                    <span className={"font-semibold mr-2"}>{followings}</span>
                     <span className={"text-gray-600 mr-6"}>abonnés</span>
                 </div>
             </div>
