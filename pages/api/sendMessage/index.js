@@ -32,7 +32,7 @@ export default async function handler(req, res) {
             await prisma.tweet.create({
                 data: {
                     content: message,
-                    authorId: user.id
+                    authorId: user.id,
                 }
             })
             res.status(200).json({message: "Tweet posted"})

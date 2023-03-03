@@ -51,8 +51,8 @@ model Response {
   id            Int      @id @default(autoincrement())
   content       String
   datePublished DateTime @default(now())
-  tweetId       Int
-  Tweet         Tweet    @relation(fields: [tweetId], references: [id])
   authorId      Int
   User          User     @relation(fields: [authorId], references: [id])
+  tweetId       Int
+  Tweet         Tweet    @relation(fields: [tweetId], references: [id])
 }

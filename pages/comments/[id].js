@@ -22,8 +22,8 @@ const Comments = ({tweet, tweets}) => {
             <Header/>
             <Message tweet={tweet} userConnectedId={userConnectedId}/>
             <InputMessageResponse tweet={tweet}/>
-            {tweets?.map((tweet) => (
-                <MessageResponse key={tweet.id} tweet={tweet} userConnectedId={userConnectedId}/>
+            {tweets?.map((t) => (
+                <MessageResponse key={t.id} tweet={t} originalTweet={tweet} userConnectedId={userConnectedId}/>
             ))}
         </div>
     );
