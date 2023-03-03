@@ -9,7 +9,7 @@ import Picker from '@emoji-mart/react'
 import {useRouter} from "next/router";
 import refreshPage from "@/utils/refreshPage";
 
-const InputMessage = () => {
+const InputMessage = ({tweet}) => {
     const {data: session} = useSession();
     const [message, setMessage] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
@@ -18,13 +18,14 @@ const InputMessage = () => {
     const router = useRouter();
     const sendMessage = async () => {
         try {
-            await fetch("/api/sendResponse/", {
+            await fetch("/api/sendMessage/response", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     message: message,
+                    tweetId: tweet.id,
                     user: session?.user,
                 })
             })

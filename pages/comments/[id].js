@@ -4,8 +4,10 @@ import Message from "@/components/feed/Message";
 import {useSession} from "next-auth/react";
 import getIdOfUserConnected from "@/utils/getIdOfUserConnected";
 import InputMessageResponse from "@/components/comments/InputMessageResponse";
+import MessageResponse from "@/components/comments/MessageResponse";
 
-const Comments = ({tweet}) => {
+
+const Comments = ({tweet, tweets}) => {
     const {data: session} = useSession();
     const [userConnectedId, setUserConnectedId] = useState(0);
 
@@ -19,7 +21,10 @@ const Comments = ({tweet}) => {
         <div className={"w-full border-r-2 border-gray-800 h-screen"}>
             <Header/>
             <Message tweet={tweet} userConnectedId={userConnectedId}/>
-            <InputMessageResponse/>
+            <InputMessageResponse tweet={tweet}/>
+            {tweets?.map((tweet) => (
+                <MessageResponse key={tweet.id} tweet={tweet} userConnectedId={userConnectedId}/>
+            ))}
         </div>
     );
 };
@@ -42,9 +47,21 @@ export async function getStaticProps(context) {
         },
     });
     tweet = JSON.parse(JSON.stringify(tweet));
+
+    //find all comments of the tweet
+    let tweets = await prisma.response.findMany({
+        where: {
+            tweetId: Number(params.id),
+        },
+        orderBy: {
+            datePublished: 'desc',
+        }
+    });
+    tweets = JSON.parse(JSON.stringify(tweets));
     return {
         props: {
             tweet,
+            tweets
         }, // will be passed to the page component as props
     }
 }

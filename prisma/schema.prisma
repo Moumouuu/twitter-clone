@@ -49,7 +49,7 @@ model Follow {
 
 model Response {
   id            Int      @id @default(autoincrement())
-  message       String
+  content       String
   datePublished DateTime @default(now())
   tweetId       Int
   Tweet         Tweet    @relation(fields: [tweetId], references: [id])
