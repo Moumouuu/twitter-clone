@@ -14,6 +14,7 @@ const Message = ({tweet, userConnectedId}) => {
     const [user, setUser] = useState("");
     const [like, setLike] = useState(false);
     const [numberOfLikes, setNumberOfLikes] = useState(0);
+    const [numberOfComments, setNumberOfComments] = useState(0);
     const {data: session} = useSession();
     const router = useRouter();
 
@@ -22,9 +23,21 @@ const Message = ({tweet, userConnectedId}) => {
             alreadyLiked();
             getUser();
             getNumberOfLikes();
+            getNumberOfComments().then((numberOfComments) => setNumberOfComments(numberOfComments));
         }
 
     }, [session, userConnectedId]);
+
+    const getNumberOfComments = async () => {
+        const res = await fetch(`/api/getNumberOfComments/${tweet.id}`, {
+            method: 'GET', headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const {numberOfComments} = await res.json();
+        return numberOfComments;
+    }
+
     const getUser = async () => {
         try {
             const res = await fetch(`/api/getUser/${tweet.authorId}`, {
@@ -135,28 +148,31 @@ const Message = ({tweet, userConnectedId}) => {
                 </div>
                 <div className="flex ">
                     <Link href={`/comments/${tweet?.id}`}
-                          className={"flex items-center text-gray-500 mr-6 cursor-pointer"}>
+                          className={"flex items-center text-gray-500 mr-6 cursor-pointer bg-black hover:bg-blue-300 hover:opacity-50 rounded-full px-2 py-1 duration-300"}>
                         <FaRegComment/>
-                        <span className={"ml-2 text-gray-500"}>0</span>
+                        <span className={"ml-2 text-gray-500"}>{numberOfComments}</span>
                     </Link>
-                    <div className={"flex items-center text-gray-500 mx-6 cursor-pointer"}>
+                    <div
+                        className={"flex items-center text-gray-500 mx-6 cursor-pointer bg-black hover:bg-green-300 hover:opacity-50 rounded-full px-2 py-1 duration-300"}>
                         <BiRepost/>
                         <span className={"ml-2 text-gray-500"}>0</span>
                     </div>
                     {like ? (
-                        <div onClick={addLike} className={'text-red-600 flex items-center mx-6 cursor-pointer'}>
+                        <div onClick={addLike}
+                             className={'text-red-600 flex items-center mx-6 cursor-pointer bg-black hover:bg-red-300 hover:opacity-50 rounded-full px-2 py-1 duration-300'}>
                             <AiFillHeart/>
                             <span className={"ml-2 text-gray-500"}>{numberOfLikes}</span>
                         </div>
                     ) : (
                         <div onClick={addLike}
-                             className={like ? 'text-red-600 flex items-center mx-6 cursor-pointer' : 'text-gray-500 flex items-center mx-6 cursor-pointer'}>
+                             className={like ? 'text-red-600 flex items-center mx-6 cursor-pointer' : 'text-gray-500 flex items-center mx-6 cursor-pointer bg-black hover:bg-red-300 hover:opacity-50 rounded-full px-2 py-1 duration-300'}>
                             <AiOutlineHeart/>
                             <span className={"ml-2 text-gray-500"}>{numberOfLikes}</span>
                         </div>
                     )
                     }
-                    <div className={"flex items-center text-gray-500 mx-6 cursor-pointer"}>
+                    <div
+                        className={"flex items-center text-gray-500 mx-6 cursor-pointer bg-black hover:bg-yellow-300 hover:opacity-50 rounded-full px-2 py-1 duration-300"}>
                         <FiShare/>
                         <span className={"ml-2 text-gray-500"}>0</span>
                     </div>
