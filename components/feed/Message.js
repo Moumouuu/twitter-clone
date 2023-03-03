@@ -123,21 +123,22 @@ const Message = ({tweet, userConnectedId}) => {
             </div>
             <div className={"flex flex-col"}>
                 <div className="flex">
-                    <Link href={`/user/${tweet.authorId}`} className={"hover:underline"}><span
+                    <Link href={`/user/${tweet?.authorId}`} className={"hover:underline"}><span
                         className={"font-semibold mr-2"}>{user.name}</span> </Link>
                     <span className={"text-gray-700"}>@{user.name}</span>
                     <span className={"text-gray-700 ml-2"}>
-                        <Moment fromNow>{tweet.datePublished}</Moment>
+                        <Moment fromNow>{tweet?.datePublished}</Moment>
                     </span>
                 </div>
                 <div className={"my-1"}>
-                    <p>{tweet.content}</p>
+                    <p>{tweet?.content}</p>
                 </div>
                 <div className="flex ">
-                    <div className={"flex items-center text-gray-500 mr-6 cursor-pointer"}>
+                    <Link href={`/comments/${tweet?.id}`}
+                          className={"flex items-center text-gray-500 mr-6 cursor-pointer"}>
                         <FaRegComment/>
                         <span className={"ml-2 text-gray-500"}>0</span>
-                    </div>
+                    </Link>
                     <div className={"flex items-center text-gray-500 mx-6 cursor-pointer"}>
                         <BiRepost/>
                         <span className={"ml-2 text-gray-500"}>0</span>

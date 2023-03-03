@@ -9,24 +9,26 @@ datasource db {
 }
 
 model User {
-  id                  Int      @id @default(autoincrement())
-  email               String   @unique
+  id                  Int        @id @default(autoincrement())
+  email               String     @unique
   name                String?
   picture             String
-  dateCreatingAccount DateTime @default(now())
+  dateCreatingAccount DateTime   @default(now())
   Tweet               Tweet[]
   Like                Like[]
-  Follow              Follow[] @relation("follow")
-  Followers           Follow[] @relation("followed")
+  Follow              Follow[]   @relation("follow")
+  Followers           Follow[]   @relation("followed")
+  Response            Response[]
 }
 
 model Tweet {
-  id            Int      @id @default(autoincrement())
+  id            Int        @id @default(autoincrement())
   content       String?
-  datePublished DateTime @default(now())
+  datePublished DateTime   @default(now())
   authorId      Int
-  User          User     @relation(fields: [authorId], references: [id])
+  User          User       @relation(fields: [authorId], references: [id])
   Like          Like[]
+  Response      Response[]
 }
 
 model Like {
@@ -43,4 +45,14 @@ model Follow {
   followedId Int
   follower   User @relation("follow", fields: [followerId], references: [id])
   followed   User @relation("followed", fields: [followedId], references: [id])
+}
+
+model Response {
+  id            Int      @id @default(autoincrement())
+  message       String
+  datePublished DateTime @default(now())
+  tweetId       Int
+  Tweet         Tweet    @relation(fields: [tweetId], references: [id])
+  authorId      Int
+  User          User     @relation(fields: [authorId], references: [id])
 }

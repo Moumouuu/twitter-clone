@@ -12,10 +12,12 @@ const Likes = ({userConnectedId, setUserConnectedId}) => {
 
     useEffect(() => {
         setTweets([])
+        //bug double appel
         if (session) {
             getIdOfUserConnected(session, setUserConnectedId);
             getUserLikes(router, tweets, setTweets, parseInt(router.query.id[0]))
         }
+        console.log(tweets)
     }, [session, userConnectedId]);
 
     return (
