@@ -21,7 +21,7 @@ const Inbox = ({users}) => {
             </div>
             <InputInbox/>
             <div>
-                {users.map(user => (
+                {users?.map(user => (
                     <Message key={user.email} user={user}/>
                 ))}
             </div>

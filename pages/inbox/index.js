@@ -1,17 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import Inbox from "@/components/inbox/Inbox";
+import {useSession} from "next-auth/react";
+import getIdOfUserConnected from "@/utils/getIdOfUserConnected";
 
 const Index = () => {
     const [users, setUsers] = useState([]);
+    const {data: session} = useSession();
+    const [userConnectedId, setUserConnectedId] = useState(null);
 
     useEffect(() => {
-        getAllUsers().then((users) => {
-            setUsers(users)
-        });
-    }, []);
+        if (session) {
+            getIdOfUserConnected(session, setUserConnectedId).then(() => {
+                getAllUsers().then((users) => {
+                    console.log(users);
+                    setUsers(users)
+                });
+            });
+        }
+    }, [session, userConnectedId]);
 
     const getAllUsers = async () => {
-        const response = await fetch('/api/user/getAllUsers', {
+        console.log(userConnectedId)
+        if (userConnectedId === null) return;
+        const response = await fetch(`/api/user/getAllUsers/${userConnectedId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
