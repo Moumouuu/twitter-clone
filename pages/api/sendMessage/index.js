@@ -28,11 +28,13 @@ export default async function handler(req, res) {
     }
     if (req.method === 'POST' && user) {
         const message = req.body.message;
+        const image = req.body.image;
         try {
             await prisma.tweet.create({
                 data: {
                     content: message,
                     authorId: user.id,
+                    image: image
                 }
             })
             res.status(200).json({message: "Tweet posted"})

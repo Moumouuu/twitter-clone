@@ -19,14 +19,14 @@ const Sidebar = () => {
                     <FaTwitter/>
                 </div>
                 <div className={"mt-5"}>
-                    <Item icon={<HiHome/>} text={"Accueil"}/>
-                    <Item icon={<BiHash/>} text={"Explorer"}/>
-                    <Item icon={<IoMdNotificationsOutline/>} text={"Notifications"}/>
-                    <Item icon={<BiEnvelope/>} text={"Messages"}/>
-                    <Item icon={<BsBookmark/>} text={"Signets"}/>
-                    <Item icon={<GiBirdTwitter/>} text={"Twitter Blue"}/>
-                    <Item icon={<BsPersonFill/>} text={"Profil"}/>
-                    <Item icon={<CgMoreO/>} text={"Plus"}/>
+                    <Item icon={<HiHome/>} text={"Accueil"} href={"/"}/>
+                    <Item icon={<BiHash/>} text={"Explorer"} href={"/"}/>
+                    <Item icon={<IoMdNotificationsOutline/>} text={"Notifications"} href={"/"}/>
+                    <Item icon={<BiEnvelope/>} text={"Messages"} href={"/inbox"}/>
+                    <Item icon={<BsBookmark/>} text={"Signets"} href={"/"}/>
+                    <Item icon={<GiBirdTwitter/>} text={"Twitter Blue"} href={"/"}/>
+                    <Item icon={<BsPersonFill/>} text={"Profil"} href={"/"}/>
+                    <Item icon={<CgMoreO/>} text={"Plus"} href={"/"}/>
                 </div>
                 <div>
                     <Link href={""}>

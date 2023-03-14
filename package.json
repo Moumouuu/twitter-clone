@@ -22,6 +22,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
     "react-moment": "^1.1.3",
+    "talkjs": "^0.15.6",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {

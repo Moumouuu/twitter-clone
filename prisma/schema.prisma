@@ -19,6 +19,8 @@ model User {
   Follow              Follow[]   @relation("follow")
   Followers           Follow[]   @relation("followed")
   Response            Response[]
+  MessageSend         Message[]  @relation("MessageSender")
+  MessageReceived     Message[]  @relation("MessageReceiver")
 }
 
 model Tweet {
@@ -27,6 +29,7 @@ model Tweet {
   datePublished DateTime   @default(now())
   authorId      Int
   User          User       @relation(fields: [authorId], references: [id])
+  image         String     @default("")
   Like          Like[]
   Response      Response[]
 }
@@ -51,8 +54,19 @@ model Response {
   id            Int      @id @default(autoincrement())
   content       String
   datePublished DateTime @default(now())
+  image         String   @default("")
   authorId      Int
   User          User     @relation(fields: [authorId], references: [id])
   tweetId       Int
   Tweet         Tweet    @relation(fields: [tweetId], references: [id])
+}
+
+model Message {
+  id            Int      @id @default(autoincrement())
+  content       String
+  datePublished DateTime @default(now())
+  senderId      Int
+  UserSender    User     @relation("MessageSender", fields: [senderId], references: [id])
+  receiverId    Int
+  UserReceiver  User     @relation("MessageReceiver", fields: [receiverId], references: [id])
 }

@@ -1,20 +1,28 @@
 import Image from "next/image";
 import {useSession} from "next-auth/react";
-import {AiOutlineCalendar, AiOutlineGif, AiOutlinePicture} from "react-icons/ai";
+import {AiOutlineCalendar, AiOutlineGif} from "react-icons/ai";
 import {BsListUl} from "react-icons/bs";
 import {VscSmiley} from "react-icons/vsc";
-import {useState} from "react";
+import React, {useState} from "react";
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 import {useRouter} from "next/router";
 import refreshPage from "@/utils/refreshPage";
+import {ImageUpload} from "@/components/feed/ImageUpload";
 
 const InputMessage = () => {
     const {data: session} = useSession();
     const [message, setMessage] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
+    const [selectedFile, setSelectedFile] = useState()
+    const [preview, setPreview] = useState()
     const router = useRouter();
     const sendMessage = async () => {
+        let fileBlog;
+        if (selectedFile) {
+            const file = document.querySelector('#upload').files[0];
+            fileBlog = await toBase64(file)
+        }
         try {
             await fetch("/api/sendMessage/", {
                 method: "POST",
@@ -24,15 +32,24 @@ const InputMessage = () => {
                 body: JSON.stringify({
                     message: message,
                     user: session?.user,
+                    image: selectedFile ? fileBlog : ""
                 })
             })
         } catch (e) {
             console.log(e);
         } finally {
             setMessage("");
+            setPreview(undefined)
+            setSelectedFile(undefined)
             refreshPage(router);
         }
     }
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
 
     return (
         <div className={"flex border-y-2 border-gray-800 "}>
@@ -49,7 +66,8 @@ const InputMessage = () => {
                 <div className={"flex items-center w-full justify-between"}>
                     <div className="flex">
                         <div className={"text-[#1DA1F2] text-xl cursor-pointer mr-4"}>
-                            <AiOutlinePicture/>
+                            <ImageUpload selectedFile={selectedFile} setSelectedFile={setSelectedFile}
+                                         preview={preview} setPreview={setPreview}/>
                         </div>
                         <div className={"text-[#1DA1F2] text-xl cursor-pointer mr-4 "}>
                             <AiOutlineGif/>

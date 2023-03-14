@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React, {useEffect, useState} from "react";
 import {FaRegComment} from "react-icons/fa";
 import {BiRepost} from "react-icons/bi";
@@ -9,12 +8,14 @@ import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import refreshPage from "@/utils/refreshPage";
 import Link from "next/link";
+import NextImage from "next/image";
 
 const Message = ({tweet, userConnectedId}) => {
     const [user, setUser] = useState("");
     const [like, setLike] = useState(false);
     const [numberOfLikes, setNumberOfLikes] = useState(0);
     const [numberOfComments, setNumberOfComments] = useState(0);
+    const [image, setImage] = useState(null);
     const {data: session} = useSession();
     const router = useRouter();
 
@@ -24,12 +25,13 @@ const Message = ({tweet, userConnectedId}) => {
             getUser();
             getNumberOfLikes();
             getNumberOfComments().then((numberOfComments) => setNumberOfComments(numberOfComments));
+            getImageFromBlog();
         }
 
     }, [session, userConnectedId]);
 
     const getNumberOfComments = async () => {
-        const res = await fetch(`/api/getNumberOfComments/${tweet.id}`, {
+        const res = await fetch(`/api/getNumberOfComments/${tweet?.id}`, {
             method: 'GET', headers: {
                 'Content-Type': 'application/json'
             },
@@ -121,6 +123,14 @@ const Message = ({tweet, userConnectedId}) => {
         }
     }
 
+    const getImageFromBlog = async () => {
+        if (tweet?.image !== "") {
+            let img = new Image();
+            img.src = tweet?.image;
+            setImage(img)
+        }
+    }
+
 
     const changeStateLike = () => {
         setLike(!like);
@@ -129,10 +139,10 @@ const Message = ({tweet, userConnectedId}) => {
     return (
         <div className={"flex border-b-2 border-gray-700 p-3"}>
             <div className={"mx-3"}>
-                <Image
+                <NextImage
                     src={user ? user.picture : "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"}
                     alt={"logo profile"} height={60} width={60}
-                    className={"rounded-full hidden md:block"}></Image>
+                    className={"rounded-full hidden md:block min-h-[60px] min-w-[60px]"}></NextImage>
             </div>
             <div className={"flex flex-col"}>
                 <div className="flex">
@@ -145,6 +155,7 @@ const Message = ({tweet, userConnectedId}) => {
                 </div>
                 <div className={"my-1"}>
                     <p>{tweet?.content}</p>
+                    {image && <img src={image?.src} className={"my-3"}></img>}
                 </div>
                 <div className="flex ">
                     <Link href={`/comments/${tweet?.id}`}

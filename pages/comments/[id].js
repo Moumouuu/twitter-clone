@@ -20,11 +20,14 @@ const Comments = ({tweet, tweets}) => {
     return (
         <div className={"w-full border-r-2 border-gray-800 h-screen"}>
             <Header/>
-            <Message tweet={tweet} userConnectedId={userConnectedId}/>
-            <InputMessageResponse tweet={tweet}/>
-            {tweets?.map((t) => (
-                <MessageResponse key={t.id} tweet={t} originalTweet={tweet} userConnectedId={userConnectedId}/>
-            ))}
+            <div className={"overflow-y-scroll overflow-hidden h-[90vh]"}>
+                <Message tweet={tweet} userConnectedId={userConnectedId}/>
+                <InputMessageResponse tweet={tweet}/>
+                {tweets?.map((t) => (
+                    <MessageResponse key={t.id} tweet={t} originalTweet={tweet} userConnectedId={userConnectedId}/>
+                ))}
+            </div>
+
         </div>
     );
 };
