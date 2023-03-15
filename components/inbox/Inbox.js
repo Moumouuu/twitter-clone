@@ -5,7 +5,7 @@ import Link from "next/link";
 import InputInbox from "@/components/inbox/InputInbox";
 import Message from "@/components/inbox/Message";
 
-const Inbox = ({users}) => {
+const Inbox = ({users, setUsers}) => {
     return (
         <div>
             <div className={"m-3 mb-7 flex items-center justify-between"}>
@@ -19,7 +19,7 @@ const Inbox = ({users}) => {
                     </Link>
                 </div>
             </div>
-            <InputInbox/>
+            <InputInbox userToAddConversation={setUsers}/>
             <div>
                 {users?.map(user => (
                     <Message key={user.email} user={user}/>

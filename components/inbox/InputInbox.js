@@ -2,7 +2,7 @@ import {HiOutlineMagnifyingGlass} from "react-icons/hi2";
 import {useState} from "react";
 import ProfileInbox from "@/components/inbox/ProfileInbox";
 
-const InputInbox = () => {
+const InputInbox = ({userToAddConversation}) => {
     const [search, setSearch] = useState("");
     const [users, setUsers] = useState([]);
 
@@ -35,7 +35,11 @@ const InputInbox = () => {
                        className={"pl-10 w-full rounded-full bg-[#202327] border border-gray-600 focus:border-none px-4 py-2 outline-none bg-transparent text-white focus:outline-[#1DA1F2]"}
                        placeholder={"Commencez une conversation..."}/>
                 {search.length > 0 && (
-                    <div onClick={() => setSearch("")}
+                    <div onClick={() => {
+                        setSearch("");
+                        userToAddConversation(users);
+                        console.log(userToAddConversation)
+                    }}
                          className={"absolute top-12 w-full bg-[#202327] rounded-xl p-3 m-h-[50vh] overflow-x-scroll"}>
                         {users?.map(user => (
                             <ProfileInbox key={user.email} user={user}/>

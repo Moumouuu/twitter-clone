@@ -12,7 +12,6 @@ const Index = () => {
         if (session) {
             getIdOfUserConnected(session, setUserConnectedId).then(() => {
                 getAllUsers().then((users) => {
-                    console.log(users);
                     setUsers(users)
                 });
             });
@@ -20,7 +19,6 @@ const Index = () => {
     }, [session, userConnectedId]);
 
     const getAllUsers = async () => {
-        console.log(userConnectedId)
         if (userConnectedId === null) return;
         const response = await fetch(`/api/user/getAllUsers/${userConnectedId}`, {
             method: 'GET',
@@ -34,7 +32,7 @@ const Index = () => {
 
     return (
         <div className={"w-1/2 border-r-2 border-gray-800 h-screen"}>
-            <Inbox users={users}/>
+            <Inbox users={users} setUsers={setUsers}/>
         </div>
     );
 };
