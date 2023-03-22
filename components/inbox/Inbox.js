@@ -5,9 +5,9 @@ import Link from "next/link";
 import InputInbox from "@/components/inbox/InputInbox";
 import Message from "@/components/inbox/Message";
 
-const Inbox = ({users, setUsers}) => {
+const Inbox = ({userConnectedId, users, setUsers}) => {
     return (
-        <div>
+        <div className={"border-r border-r-gray-700 h-screen"}>
             <div className={"m-3 mb-7 flex items-center justify-between"}>
                 <span className={"font-bold text-xl"}>Messages</span>
                 <div className={"flex"}>
@@ -22,6 +22,7 @@ const Inbox = ({users, setUsers}) => {
             <InputInbox userToAddConversation={setUsers}/>
             <div>
                 {users?.map(user => (
+                    user.id !== userConnectedId &&
                     <Message key={user.email} user={user}/>
                 ))}
             </div>

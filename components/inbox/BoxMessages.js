@@ -2,7 +2,7 @@ import React from 'react';
 
 const BoxMessages = () => {
     return (
-        <div className={"w-full hidden md:block h-screen overflow-y-scroll"}>
+        <div className={"w-full hidden md:block h-screen"}>
             <div className={"w-1/3 m-auto flex flex-col h-full justify-center"}>
                 <h6 className={"font-bold text-4xl"}>Sélectionner un message.</h6>
                 <p className={"my-2 text-gray-600"}>Faites un choix dans vos conversations existantes, commencez-en une
@@ -13,6 +13,7 @@ const BoxMessages = () => {
                 </button>
             </div>
         </div>
+
     );
 };
 

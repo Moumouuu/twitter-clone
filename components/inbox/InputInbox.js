@@ -37,6 +37,7 @@ const InputInbox = ({userToAddConversation}) => {
                 {search.length > 0 && (
                     <div onClick={() => {
                         setSearch("");
+                        //todo : add user to conversation
                         userToAddConversation(users);
                         console.log(userToAddConversation)
                     }}
